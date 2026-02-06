@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Her ❤️</title>
+
+<style>body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe5e5, #ffc6d6);
+      font-family: 'Arial', sans-serif;
+    }
+    video {
+        width: 600px;
+        height: 400px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 30px;
+      
+    }
+    button {
+    padding: 15px 35px;
+    margin-left: 120px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #ff4d4d, #ff1a75);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<video id="video" controls autoplay muted poster="assets/click-clicking.gif"></video>
+
+<h3 class="text2">Okay the moment of truth now, would you be my forever partner?</h3>
+
+<div class="buttons">
+  <button id="yesButton">Yes!</button>
+  <button id="noButton">No</button>
+</div>
+
+</div>
+
+<script>
+window.onload = () => {
+
+const videos = [
+  "./assets/proposal.mp4",
+  "./assets/slapp.mp4"
+];
+
+const txt = [
+  "Really girl 🤔!!",
+  "No place to run now, just click yes, you are stuck with me 😌"
+];
+
+let index = 0;
+let playlistFinished = false;
+
+const video = document.getElementById("video");
+const noBtn = document.getElementById("noButton");
+const yesBtn = document.getElementById("yesButton");
+const textElement = document.querySelector(".text2");
+
+// First video
+video.src = videos[0];
+
+// Typing function
+function typeText(message) {
+  let i = 0;
+  textElement.innerHTML = "";
+
+  const interval = setInterval(() => {
+    if (i < message.length) {
+      textElement.innerHTML += message.charAt(i);
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 40);
+}
+
+// Type first message
+typeText(textElement.textContent);
+
+// YES button
+yesBtn.addEventListener("click", () => {
+  window.location.href = "ending.html";
+});
+
+// NO button click
+noBtn.addEventListener("click", () => {
+
+  if (!playlistFinished) {
+
+    index++;
+
+    if (index < videos.length) {
+      video.src = videos[index];
+      video.load();
+      video.play();
+      typeText(txt[index-1]);
+
+    } else {
+      playlistFinished = true;
+      typeText(txt[txt.length-1]);
+      noBtn.style.position = "absolute";
+      moveButton();
+    }
+  }
+});
+
+// Hover moves button AFTER playlist
+noBtn.addEventListener("mouseenter", () => {
+  if (playlistFinished) moveButton();
+});
+
+function moveButton() {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+};
+</script>
+
+</body>
+</html>

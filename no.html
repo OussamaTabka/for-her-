@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 30px;
+      font-family: 'Arial', sans-serif;
+      
+    }
+    video {
+      width: 400px;
+        height: 400px;
+    }
+     body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe5e5, #ffc6d6);
+    }
+     button {
+    padding: 15px 35px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #ff4d4d, #ff1a75);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+    </style>
+    <script>
+    
+window.onload = () => {
+    document.getElementById("video").onplay=()=>{
+    const text = "girl you broke my heart😭";
+
+let index = 0;
+
+function typeEffect() {
+  if (index < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 50); // speed (smaller = faster)
+  }
+}
+
+typeEffect();}}
+  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <video id ="video" width="600" controls poster="assets/click-clicking.gif" type="video/mp4">
+            <source src="assets/cry.mp4" type="video/mp4">
+        </video>
+        <br>
+        <h3 id="typing" class="text2" ></h3>
+        <button id ="yesButton" onclick="window.location.href='page2.html'">okay stop crying and ask me again </button> 
+    </div>
+</body>
+</html>
